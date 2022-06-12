@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const app = express()
 
 //conectar con la base de dato
-const port = 8000
+const port = 1000
 var server_db = "mongodb+srv://magusdisventure:1234@cluster0.e61rqiw.mongodb.net/?retryWrites=true&w=majority"
 
 //rutas 
