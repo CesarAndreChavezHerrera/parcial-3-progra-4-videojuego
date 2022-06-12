@@ -29,7 +29,64 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/registro', async (req, res) => {
-  res.redirect('/home')
+  const {name,nickname,email,password,repassword} = req.body
+
+  if(password === repassword){
+
+    axios.get('http://localhost:8000/api/users')
+    .then(data => {
+        var correo_existente= false
+        var apodo_existente = false
+        for(var a = 0 ; a < data.data.length;a ++){
+          if(data.data[a].email == email ){
+            correo_existente = true
+            break
+          }
+          if(data.data[a].nickname == nickname ){
+            apodo_existente = true
+            break
+          }
+
+        }
+        if(correo_existente == true){
+          res.render(registroPage,{
+            message:"El correo ya ha sido usado",
+            messageClass:"alert-danger"
+          })
+          console.log("correo existente")
+        }
+        if(apodo_existente == true){
+          res.render(registroPage,{
+            message:"Ya hay alguien usando ese apodo",
+            messageClass:"alert-danger"
+          })
+          console.log("apodo existente")
+        }
+        if(apodo_existente == false && correo_existente == false){
+          console.log("se puede guardar un nuevo usuario")
+          var body = {
+            name:name,
+            nickname:nickname,
+            email:email,
+            password:password
+          }
+          axios.post('http://localhost:8000/api/users',body)
+            .then(data_=>{
+              res.redirect('/home')
+              console.log('se guardo')
+            })
+        }
+
+  })
+  }else{
+    //res.redirect('/home')
+    res.render(registroPage,{
+      message:"La contraseña no coincide",
+      messageClass:"alert-danger"
+    })
+  }
+  //console.log(name,nickname,email,password,repassword)
+  
 })
 
 
