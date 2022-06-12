@@ -8,33 +8,30 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nickname</th>
-      <th scope="col">Mejor puntuación</th>
       <th scope="col">Enemigos eliminados</th>
       <th scope="col">Cantidad de disparos mágicos</th>
       <th scope="col">Cantidad de disparos</th>
-      <th scope="col">Muertes</th>
       <th scope="col">Mejor tiempo</th>
     </tr>
   </thead>
   <tbody>
+    {{#each ranking}}
     <tr>
       <th scope="row">1</th>
-      <td>Manfredy</td>
-      <td>125,000</td>
-      <td>5</td>
-      <td>77</td>
-      <td>100</td>
-      <td>6</td>
-      <td>10:36</td>
+      <td>{{this.nickname}}</td>
+      <td>{{this.n_muertes}}</td>
+      <td>{{this.n_disparo_magia}}</td>
+      <td>{{this.n_disparo_arma}}</td>
+      <td>{{this.tiempo}}</td>
+
     </tr>
+    {{/each}}
     <tr>
       <th scope="row">2</th>
       <td>William</td>
-      <td>125,000</td>
       <td>5</td>
       <td>77</td>
       <td>100</td>
-      <td>6</td>
       <td>1:50</td>
     </tr>
   </tbody>
