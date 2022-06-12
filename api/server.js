@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const app = express()
 
 //conectar con la base de dato
-const port = process.env.port || 1000
+const port = process.env.port || 8000
 var server_db = "mongodb+srv://magusdisventure:1234@cluster0.e61rqiw.mongodb.net/?retryWrites=true&w=majority"
 
 //rutas 
@@ -26,4 +26,8 @@ mongoose
     .catch((error)=>console.error(error)
     )
 
-app.listen(port,()=> console.log('el servidor esta en ',port))
+var server = app.listen(port,()=> {
+    var host = server.address().address
+    var port_ = server.address().port
+    console.log("el server esta en http://"+host.toString(),port_)
+})
