@@ -14,6 +14,11 @@ router.post('/users',(req,res)=>{
 
 //traer todos los datos
 router.get('/users',(req,res)=>{
+    /*
+    console.log("comienzo")
+    console.log(req)
+    console.log("final")
+    */
     userSchema
         .find()
         .then((data)=> res.json(data))

@@ -10,6 +10,13 @@ var server_db = "mongodb+srv://magusdisventure:1234@cluster0.e61rqiw.mongodb.net
 const useRoutes = require('./src/routes/user')
 const rankingRoutes = require('./src/routes/ranking')
 app.use(express.json())
+
+// acpetar accesso de todos lados
+app.use(function(req,res,next){
+    res.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next()
+})
 app.use('/api',useRoutes)
 app.use('/api',rankingRoutes)
 
